@@ -1,4 +1,5 @@
 <?php
+echo 'this is a test!'; exit;
 /*
  *---------------------------------------------------------------
  * APPLICATION ENVIRONMENT
