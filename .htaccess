@@ -1,0 +1,47 @@
+#AddHandler application/x-httpd-php .php
+
+RewriteEngine on
+RewriteCond %{HTTP_HOST} !^www\.twobeerdudes\.com$ [NC]
+RewriteRule ^(.*)$ http://www.twobeerdudes.com/$1 [R=301,L]
+
+RewriteCond $1 !^(index\.php|test5\.php|test6\.php|js|files|css|new_css|new_js|images|fonts|captcha|ci|graph|lmbiance|sitemap\.xml|robots\.txt|index_test\.php)
+RewriteRule ^(.*)$ /index.php?/$1 [L]
+
+#Expire Header
+<FilesMatch "\.(ico|jpg|jpeg|png|gif|js|css)$">
+ExpiresDefault "access plus 1 months"
+</FilesMatch>
+
+AddType application/vnd.ms-fontobject    .eot
+AddType application/x-font-ttf           .ttf
+AddType application/font-woff            .woff
+AddType application/font-woff2           .woff2
+
+<IfModule mod_expires.c>
+# Enable expirations
+ExpiresActive On 
+# Default directive
+ExpiresDefault A0
+# My favicon
+ExpiresByType image/x-icon A2592000
+ExpiresByType image/x-ico A2592000
+# Images
+ExpiresByType image/gif A2592000
+ExpiresByType image/png A2592000
+ExpiresByType image/jpg A2592000
+ExpiresByType image/jpeg A2592000
+# CSS
+ExpiresByType text/css A2592000
+# Javascript
+#ExpiresByType application/javascript A2592000
+</IfModule>
+
+AddOutputFilterByType DEFLATE text/plain
+AddOutputFilterByType DEFLATE text/html
+AddOutputFilterByType DEFLATE text/xml
+AddOutputFilterByType DEFLATE text/css
+AddOutputFilterByType DEFLATE application/xml
+AddOutputFilterByType DEFLATE application/xhtml+xml
+AddOutputFilterByType DEFLATE application/rss+xml
+AddOutputFilterByType DEFLATE application/javascript
+AddOutputFilterByType DEFLATE application/x-javascript
